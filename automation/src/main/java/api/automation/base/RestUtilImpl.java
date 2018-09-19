@@ -39,7 +39,7 @@ public class RestUtilImpl {
 	
 	public void setRequestParams(java.util.List<String> keys, java.util.List<String> values){
 		/*
-		 * 
+		 * To set params to get or post requests
 		 */
 		Map<String, String> params = new HashMap<String, String>();
 		
@@ -52,6 +52,9 @@ public class RestUtilImpl {
 	}
 	
 	public Response makeGetRequest(String uri){
+		/*
+		 * RestAssured get request with uri or with out uri
+		 */
 		if(uri==null){
 			restResponse = restRequest.get();
 		}else{
@@ -61,8 +64,12 @@ public class RestUtilImpl {
 		
 	}
 	
+	
 	@SuppressWarnings("deprecation")
 	public void connectionTimedOut(Integer timeout){
+		/*
+		 * Set the timeout for api
+		 */
 		if (timeout != null) { 
 			restAssuredConfig = RestAssuredConfig.config().httpClient(HttpClientConfig.httpClientConfig().setParam("CONNECTION_MANAGER_TIMEOUT", 3000));
 		}
@@ -70,6 +77,9 @@ public class RestUtilImpl {
 	}
 	
 	public static void main(String args[]){
+		/*
+		 * Sample get request with Uri 
+		 */
 		RestUtilImpl re= new RestUtilImpl("https://reqres.in/api/users");
 		Response resp = re.makeGetRequest("/3");
 		System.out.println(resp.asString());
