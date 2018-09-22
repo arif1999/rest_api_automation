@@ -1,22 +1,24 @@
 package api.automation.base;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import io.restassured.RestAssured;
 import io.restassured.config.HttpClientConfig;
 import io.restassured.config.RestAssuredConfig;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
+import java.util.HashMap;
+import java.util.Map;
+
+
 public class RestUtilImpl {
 	/*
 	 * Rest assured base Implementation 
 	 */
-	private RequestSpecification restRequest;
+	public RequestSpecification restRequest;
 	private Response restResponse;
+	public String url;
 	private RestAssuredConfig restAssuredConfig = null;
-	RestUtilImpl(String url){
+	public RestUtilImpl(String url){
 		/*
 		 * constructor for rest api 
 		 */
@@ -55,8 +57,8 @@ public class RestUtilImpl {
 		/*
 		 * RestAssured get request with uri or with out uri
 		 */
-		if(uri==null){
-			restResponse = restRequest.get();
+		if(uri==""){
+			restResponse = restRequest.when().get();
 		}else{
 			restResponse = restRequest.get("/"+uri);
 		}
@@ -65,7 +67,6 @@ public class RestUtilImpl {
 	}
 	
 	
-	@SuppressWarnings("deprecation")
 	public void connectionTimedOut(Integer timeout){
 		/*
 		 * Set the timeout for api
@@ -76,15 +77,15 @@ public class RestUtilImpl {
 		
 	}
 	
-	public static void main(String args[]){
-		/*
-		 * Sample get request with Uri 
-		 */
-		RestUtilImpl re= new RestUtilImpl("https://reqres.in/api/users");
-		Response resp = re.makeGetRequest("/3");
-		System.out.println(resp.asString());
-		
-	}
+//	public static void main(String args[]){
+//		/*
+//		 * Sample get request with Uri 
+//		 */
+//		RestUtilImpl re= new RestUtilImpl("https://reqres.in/api/users");
+//		Response resp = re.makeGetRequest("/3");
+//		System.out.println(resp.asString());
+//		
+//	}
 
 
 

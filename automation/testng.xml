@@ -4,7 +4,7 @@
 
 	  <test name="TestNgMavenTest">
 	      <classes>
-	          <class name="src.test.java.api.automation.AppTest"/>
+	          <class name="src.test.java.com.test.ApiTest"/>
 	      </classes>
 
 	  </test>
